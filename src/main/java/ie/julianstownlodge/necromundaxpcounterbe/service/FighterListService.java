@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FighterListService {
     List<Fighter> getFighterList();
+
+    void saveFighterList(List<Fighter> newFighterList);
 }

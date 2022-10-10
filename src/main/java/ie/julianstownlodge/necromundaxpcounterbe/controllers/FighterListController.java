@@ -2,10 +2,7 @@ package ie.julianstownlodge.necromundaxpcounterbe.controllers;
 
 import ie.julianstownlodge.necromundaxpcounterbe.model.Fighter;
 import ie.julianstownlodge.necromundaxpcounterbe.service.FighterListService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +18,10 @@ public class FighterListController {
     @GetMapping(value = "/getList")
     public List<Fighter> getFighterList() {
         return fighterListService.getFighterList();
+    }
+
+    @PostMapping(value = "/saveList")
+    public void saveList(@RequestBody List<Fighter> newFighterList) {
+        fighterListService.saveFighterList(newFighterList);
     }
 }

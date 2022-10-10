@@ -8,9 +8,7 @@ import ie.julianstownlodge.necromundaxpcounterbe.service.FighterListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,7 +24,12 @@ public class FighterListServiceImpl implements FighterListService {
 
     @Override
     public List<Fighter> getFighterList() {
-        var fighterList = fighterListRepository.findAll();
-        return fighterList.stream().map(mapper::entityToModel).collect(Collectors.toList());
+        return fighterListRepository.findAll().stream().map(mapper::entityToModel).collect(Collectors.toList());
+    }
+
+    @Override
+    public void saveFighterList(List<Fighter> newFighterList) {
+        List<FighterEntity> convertedList = newFighterList.stream().map(mapper::modelToEntity).collect(Collectors.toList());
+        fighterListRepository.saveAll(convertedList);
     }
 }
